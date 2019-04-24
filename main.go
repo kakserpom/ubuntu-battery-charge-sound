@@ -23,7 +23,8 @@ func playSound(path string) {
 	check(err)
 	streamer, format, err := mp3.Decode(f)
 	check(err)
-	speaker.Init(format.SampleRate, format.SampleRate.N(time.Second/10))
+	err = speaker.Init(format.SampleRate, format.SampleRate.N(time.Second/10))
+	check(err)
 	speaker.Play(streamer)
 	//defer streamer.Close()
 }
@@ -34,8 +35,6 @@ func main() {
 	verbosity := flag.Int("v", 0, "verbosity level")
 	soundFile := flag.String("f", "carrier-has-arrived.mp3", "mp3 file")
 	flag.Parse()
-
-	fmt.Println("verbosity: " + strconv.Itoa(*verbosity))
 
 	for true {
 		data, err := ioutil.ReadFile("/sys/class/power_supply/BAT1/capacity")

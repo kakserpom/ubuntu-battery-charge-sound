@@ -51,7 +51,7 @@ func main() {
 		}
 
 		if status == "Charging" {
-			if !soundPlayed && percentage > *targetPercentage {
+			if !soundPlayed && percentage >= *targetPercentage {
 				if *verbosity > 0 {
 					fmt.Println("Playing the sound.")
 				}

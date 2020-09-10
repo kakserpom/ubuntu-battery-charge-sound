@@ -36,7 +36,7 @@ func main() {
 	soundFile := flag.String("f", "carrier-has-arrived.mp3", "mp3 file")
 	flag.Parse()
 
-	for true {
+	for {
 		data, err := ioutil.ReadFile("/sys/class/power_supply/BAT1/capacity")
 		check(err)
 		percentage, err := strconv.Atoi(strings.Trim(string(data), "\n"))
